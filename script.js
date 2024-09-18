@@ -62,12 +62,19 @@ document.getElementById('rsvpForm').addEventListener('submit', function(event) {
     })
     .then(response => response.json())
     .then(data => {
-        alert('Data berhasil dikirim!');
-        // Atau lakukan tindakan lain jika perlu
+        Swal.fire({
+            title: "Berhasil mengirim ucapan",
+            text: "Silahkan refresh halaman untuk melihat ucapan anda di bawah",
+            icon: "success"
+          });
         console.log('Success:', data);
     })
     .catch((error) => {
-        alert('Terjadi kesalahan!');
+        Swal.fire({
+            title: "Gagal mengirim ucapan",
+            text: "Kayanya ada yang salah deh",
+            icon: "error"
+          });
         console.error('Error:', error);
     });
 });
@@ -107,3 +114,30 @@ document.getElementById('rsvpForm').addEventListener('submit', function(event) {
      .catch(error => {
          console.error('Error fetching data:', error);
      });
+
+     function copy(selector) {
+        // Get the text field element
+        var textElement = document.querySelector(selector);
+        
+        // Create a temporary input element to copy text
+        var tempInput = document.createElement("input");
+        tempInput.value = textElement.textContent.trim();
+        document.body.appendChild(tempInput);
+        
+        // Select the text field
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // For mobile devices
+        
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(tempInput.value);
+        
+        // Remove the temporary input element
+        document.body.removeChild(tempInput);
+        
+        // Show success alert
+        Swal.fire({
+            title: "Berhasil menyalin nomor rekening",
+            icon: "success"
+        });
+    }
+    
