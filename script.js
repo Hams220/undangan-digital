@@ -2,7 +2,7 @@ function openinvit(){
     home.style.display='none';
     dataNikah1.style.display='flex';
     mempelai.style.display='block'
-    dataNikah1.classList.add("fade-up");
+    dataNikah1.classList.add("angkat");
     var audio = document.getElementById("myAudio");
             audio.currentTime = 0; // Mulai dari detik 0 (awal musik)
             audio.play(); // Putar musik
