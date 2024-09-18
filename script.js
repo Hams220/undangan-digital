@@ -6,6 +6,7 @@ function openinvit(){
     var audio = document.getElementById("myAudio");
             audio.currentTime = 0; // Mulai dari detik 0 (awal musik)
             audio.play(); // Putar musik
+    AOS.refresh()
 }
 
 // Set target date
