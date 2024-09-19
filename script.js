@@ -56,8 +56,8 @@ window.onload = function () {
                     document.getElementById('orangtua').innerHTML = `Bapak ${user.namaAyahPria} & Ibu ${user.namaIbuPria}`;
                     document.getElementById('namalengkapwanita').innerHTML = user.namaWanita;
                     document.getElementById('orangtuawanita').innerHTML = `Bapak ${user.namaAyahWanita} & Ibu ${user.namaIbuWanita}`;
-                    document.getElementById('akad').innerHTML = `Pukul ${user.akadAcara} - selesai`;
-                    document.getElementById('resepsi').innerHTML = `Pukul ${user.resepsiAcara} - selesai`;
+                    document.getElementById('akad').innerHTML = `${user.akadAcara}`;
+                    document.getElementById('resepsi').innerHTML = `${user.resepsiAcara}`;
                     document.getElementById('lokasi').innerHTML = user.lokasiAcara;
                     urlgmaps = user.urlgmaps;
 
