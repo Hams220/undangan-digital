@@ -18,12 +18,13 @@ function openinvit() {
 let und = '';
 let untuk = '';
 let htmlrekening = '';
-let htmlgallery = '';
+let htmlgallery1 = '';
+let htmlgallery2 = '';
 let urlgmaps ='';
 const hariNama = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 const bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-window.onload = function () {
+function loadPage () {
     const urlParams = new URLSearchParams(window.location.search);
     und = urlParams.get('undangan') || '';
     untuk = urlParams.get('untuk') || '';
@@ -35,9 +36,7 @@ window.onload = function () {
         .then(response => response.json())
         .then(data => {
             if (data) {
-                // Proses data jika tidak null atau undefined
-                Object.keys(data).forEach(key => {
-                    let user = data[key];
+                    let user = data;
                     console.log(user);  // Lihat detail data di konsol
 
                     // Format tanggal acara
@@ -50,7 +49,6 @@ window.onload = function () {
                     
                     // Tampilkan data di DOM
                     document.getElementById('panggilan2manten').innerHTML = `${user.namamantenpanggilpria} & ${user.namaPanggilanWanita}`;
-                    document.getElementById('panggilan2manten1').innerHTML = `${user.namamantenpanggilpria} & ${user.namaPanggilanWanita}`;
                     document.getElementById('tanggalmenikah').innerHTML = tanggalFormatted;
                     document.getElementById('namalengkappria').innerHTML = user.namamantenpria;
                     document.getElementById('orangtua').innerHTML = `Bapak ${user.namaAyahPria} & Ibu ${user.namaIbuPria}`;
@@ -64,23 +62,33 @@ window.onload = function () {
                     if(user.fotopria == ''){
                         fotopria.src = 'gambar-home.jpg'
                     }else{
-                        fotopria.src = user.fotoWanita
+                        fotopria.src = user.fotopria;
                     }
 
-                    if(user.v == ''){
+                    if(user.fotoWanita == ''){
                         fotowanita.src = 'gambar-home.jpg'
                     }else{
-                        fotowanita.src = user.fotoWanita
+                        fotowanita.src = user.fotoWanita;
                     }
                     
                     // Proses rekening
                     if (Array.isArray(user.datarek)) {
+                        let iconbank = '';
                         user.datarek.forEach(function (x) {
+                            if(x.namaBank == 'Bca'){
+                                iconbank = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1598px-Bank_Central_Asia.svg.png';
+                            }else if(x.namaBank == 'Bri'){
+                                iconbank = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/640px-BANK_BRI_logo.svg.png';
+                            }else if(x.namaBank == 'Bni'){
+                                iconbank = 'https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1024px-BNI_logo.svg.png';
+                            }else if(x.namaBank == 'Dana'){
+                                iconbank = 'dana.jpg';
+                            }
                             htmlrekening += `
                                 <div class="border border-primary rounded shadow" style="padding: 10px; display: flex; justify-content: space-evenly; font-family: Josefin Sans;" data-aos="fade-left">
                                     <div>
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/640px-BANK_BRI_logo.svg.png" alt="Rekening BRI" class="img-rek rounded">
-                                        <p id="rek${x.namabank}">${x.norek}</p><span>A/n ${x.namarek}</span>
+                                        <img src="${iconbank}" alt="Rekening BRI" class="img-rek rounded">
+                                        <p id="rek${x.namaBank}">${x.norek}</p><span>A/n ${x.namarek}</span>
                                     </div>
                                     <div style="text-align: center;">
                                         <i class="bi bi-clipboard" onclick="copy('#rek${x.namabank}')"></i>
@@ -95,16 +103,37 @@ window.onload = function () {
 
                     // Proses galeri
                     if (Array.isArray(user.datagallery)) {
+                        
+                        
                         user.datagallery.forEach(function (i, index) {
-                            htmlgallery += `
-                                <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                    <img src="${i.urlgallery}" class="d-block w-100 rounded-4" alt="...">
-                                </div>`;
+                            // Tiga item pertama ke carousel1
+                            if (index < 3) {
+                                htmlgallery1 += `
+                                    <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                        <img src="${i.urlgallery}" class="d-block w-100 rounded-4" alt="...">
+                                    </div>`;
+                            } 
+                            // Sisanya ke carousel2
+                            else {
+                                htmlgallery2 += `
+                                    <div class="carousel-item ${index === 3 ? 'active' : ''}">
+                                        <img src="${i.urlgallery}" class="d-block w-100 rounded-4" alt="...">
+                                    </div>`;
+                            }
                         });
-                        document.getElementById('carousel1').innerHTML = htmlgallery;
+                    
+                        // Jika galeri di carousel1 dan carousel2 tersedia, render ke DOM
+                        if (htmlgallery1) {
+                            document.getElementById('carousel1').innerHTML = htmlgallery1;
+                        }
+                    
+                        if (htmlgallery2) {
+                            document.getElementById('carousel2').innerHTML = htmlgallery2;
+                        }
                     } else {
                         console.error('datagallery bukan array atau tidak tersedia');
                     }
+                    
 
                     // Update countdown setiap 1 detik
                     const countdownFunction = setInterval(function () {
@@ -123,9 +152,8 @@ window.onload = function () {
                             document.getElementById("countdown").innerHTML = "Waktu habis!";
                         }
                     }, 1000);
-                });
             } else {
-                document.write('Err: anda harus membuat undangan terlebih dahulu')
+                console.log('Err: anda harus membuat undangan terlebih dahulu')
             }
         })
         .catch(error => {
@@ -142,8 +170,9 @@ fetch(`https://apigame-18b26-default-rtdb.firebaseio.com/rsvp/${und}.json`)
     const dataList = document.getElementById('dataList');
     dataList.innerHTML = ''; // Kosongkan konten lama
 
-    Object.keys(data).forEach(key => {
-        const entry = data[key];
+    for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+            let entry = data[key];
         const listItem = document.createElement('li');
 
         listItem.innerHTML = `
@@ -154,7 +183,8 @@ fetch(`https://apigame-18b26-default-rtdb.firebaseio.com/rsvp/${und}.json`)
             </div><br/>`;
 
         dataList.appendChild(listItem);
-    });
+    }
+};
 })
 .catch(error => {
     console.error('Error fetching data:', error);
@@ -216,3 +246,4 @@ function copy(selector) {
 function lihatalamat(){
     location.href=urlgmaps;
 }
+loadPage()
