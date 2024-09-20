@@ -37,7 +37,6 @@ function loadPage () {
         .then(data => {
             if (data) {
                     let user = data;
-                    console.log(user);  // Lihat detail data di konsol
 
                     // Format tanggal acara
                     const tanggal = new Date(user.tanggalAcara);
