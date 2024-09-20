@@ -48,6 +48,7 @@ function loadPage () {
                     
                     // Tampilkan data di DOM
                     document.getElementById('panggilan2manten').innerHTML = `${user.namamantenpanggilpria} & ${user.namaPanggilanWanita}`;
+                    document.getElementById('panggilan2manten2').innerHTML = `${user.namamantenpanggilpria} & ${user.namaPanggilanWanita}`;
                     document.getElementById('tanggalmenikah').innerHTML = tanggalFormatted;
                     document.getElementById('namalengkappria').innerHTML = user.namamantenpria;
                     document.getElementById('orangtua').innerHTML = `Bapak ${user.namaAyahPria} & Ibu ${user.namaIbuPria}`;
