@@ -10,7 +10,6 @@ function openinvit() {
     dataNikah1.classList.add("fade-up"); // Tambahkan animasi fade-up ke dataNikah1
     
     AOS.refresh();
-    element.scrollIntoView({ behavior: 'smooth' });
     var audio = document.getElementById("myAudio");
     audio.currentTime = 0; // Mulai musik dari detik 0
     audio.play(); // Putar musik
