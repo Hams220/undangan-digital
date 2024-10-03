@@ -13,323 +13,285 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        body {
-            padding: 0px;
-            box-sizing: border-box;
-            /* Menambahkan box-sizing untuk memastikan padding tidak melebihi lebar viewport */
-            overflow-x: hidden;
-            /* Menghindari scroll horizontal yang tidak diinginkan */
-        }
-
-        .pinyon-script-regular {
-            font-family: "Pinyon Script", cursive;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .inter-font {
-            font-family: "Inter", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .sacramento-regular {
-            font-family: "Sacramento", cursive;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .img-welcome {
-            width: 100%;
-            /* Mengubah lebar gambar agar responsif */
-            max-width: 200px;
-            /* Mengatur lebar maksimal gambar */
-            height: auto;
-            /* Menjaga proporsi gambar */
-        }
-
-        #home,
-        #dataNikah1,
-        #dataNikah,
-        #mempelai {
-            height: 100vh;
-            /* Mengubah height dari 100vh ke auto untuk responsivitas */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 20px;
-            /* Menambahkan padding agar konten tidak menempel pada tepi */
-        }
-
-        h1 {
-            font-size: 40px;
-        }
-
-        .carousel-item img {
-            height: auto;
-            width: auto;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-                /* Mengurangi padding untuk layar kecil */
-            }
-
-            #home,
-            #dataNikah1,
-            #dataNikah,
-            #mempelai,
-            #gallery {
-                padding: 0;
-                /* Menghapus padding di layar kecil */
-            }
-        }
-
-        .py-5 {
-            background-color: #c07878;
-        }
-
-        .fade-up {
-            transform: translateY(20px);
-            animation: fadeUp 0.5s ease forwards;
-        }
-
-        /* Animasi fade up */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .bi-balloon-heart {
-            font-size: 20px;
-            position: fixed;
-            z-index: 1000;
-        }
-
-        #home .bi-balloon-heart {
-            top: 40px;
-            right: 10px;
-        }
-
-        #dataNikah1 .bi-balloon-heart,
-        #mempelai .bi-balloon-heart,
-        #gallery .bi-balloon-heart {
-            bottom: 40px;
-            left: 10px;
-        }
-
-        .img-rek {
-            width: 150px;
-            height: auto;
-        }
-
-        .btn {
-            transition: .2s ease-in-out 0s;
-        }
-
-        .btn:hover {
-            cursor: pointer;
-            transform: scale(1.25);
-            background: #FFF;
-            color: #000;
-        }
-    </style>
 </head>
+<style>
+    .welcomeHome {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-<body data-aos-duration="400">
-    <section id="home">
-        <center>
-            <i class="bi bi-balloon-heart" data-aos="fade-right"></i>
-            <h1 class="sacramento-regular" data-aos="fade-down">The Wedding Of</h1>
-            <img src="bg.png" alt="Gambar undangan" class="img-welcome rounded rounded-circle" data-aos="fade">
-            <h1 class="sacramento-regular" data-aos="fade-up" id="panggilan2manten">Wahyu & Rini</h1>
+    .img-welcome {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+    }
 
-            <p style="font-family: Josefin Sans;" data-aos="fade-up">Kepada yth Bapak/Ibu/Saudara/i</p>
-            <h2 style="font-family: Josefin Sans;" data-aos="fade-up" id="namateman">Teman teman semua</h2>
-            <button class="btn border-black rounded rounded-pill shadow" data-aos="fade-up" onclick="openinvit()"><i
-                    class="bi bi-envelope-open-heart"></i> Open invitation</button>
-        </center>
-    </section>
+    .home {
+        min-height: 100vh;
+        padding-top: 10px;
+        text-align: center;
+    }
 
-    <section id="dataNikah1" class="py-5" style="display: none;">
-        <i class="bi bi-balloon-heart" data-aos="fade-right"></i>
-        <center class="container mt-4">
-            <audio id="myAudio" loop>
-                <source
-                    src="audio/Undangan digital Edo & Resta  Nothing Gonna Change My Love For You (Cover Shania Yan).mp3"
-                    type="audio/mpeg">
-            </audio>
-            <h1 class="sacramento-regular" data-aos="fade-up">Undangan pernikahan</h1>
-            <img src="bg.png" alt="gambar home" class="img-welcome rounded rounded-circle" data-aos="fade-up">
-            <h1 class="sacramento-regular" data-aos="fade-up" style="margin-top: 50px;" id="panggilan2manten2">Wahyu & Rini</h1>
-            <br>
-            <span style="font-family: Josefin Sans; font-size: 15px;" data-aos="fade-down" id="tanggalmenikah">Rabu, 15 oktober
-                2025</span><br><br>
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Event&dates=20251015T090000Z/20251015T235900Z&details=Wedding+between+Wahyu+and+Rini&location=Your+Event+Location"
-                class="btn border-black rounded rounded-pill shadow" style="font-size: 15px;" target="_blank">
-                <i class="bi bi-floppy"></i> Save the Date
-            </a>
-            <br><br><br>
-            <span data-aos="fade-down" style="font-family: Josefin Sans;">Scroll down</span>
-        </center>
-    </section>
+    .mempelai {
+        min-height: 100vh;
+        text-align: center;
+        padding-top: 20px;
+    }
 
-    <section id="mempelai" style="display: none;">
-        <i class="bi bi-balloon-heart" data-aos="fade-right"></i>
-        <center class="container mt-4">
-            <h2 style="font-family: 'Noto Naskh Arabic', serif;font-size: 30px;" data-aos="fade-up">بِسْمِ اللَّهِ
-                الرَّحْمَنِ الرَّحِيْمِ</h2>
-            <br><br>
-            <h2 style="font-family: sacramento; font-size: 30px;" data-aos="fade-up">Assalamualaikum <br> Warahmatullahi
+    p {
+        font-family: Josefin Sans;
+        font-size: 12px;
+    }
+
+    .dataNikah {
+        min-height: auto;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .bi-balloon-heart {
+        font-size: 20px;
+        position: fixed;
+        z-index: 1000;
+    }
+
+    .gallery {
+        text-align: center;
+        padding: 10px;
+        min-height: auto;
+    }
+
+    .rsvp {
+        min-height: 100vh;
+        padding: 10px;
+    }
+
+    .inprsvp,
+    textarea {
+        width: 100%;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid blue;
+    }
+
+    .img-rek {
+        width: 100px;
+        height: auto;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .fadeUp {
+        transform: translateY(20px);
+        animation: fadeUp 0.5s ease forwards;
+    }
+
+    /* Animasi fade up */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .bi-balloon-heart {
+        font-size: 20px;
+        position: absolute;
+        animation: float 4s ease-in-out infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<body data-aos-duration="500">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content"> <!-- Modal content untuk background modal -->
+                <div class="modal-body bg-white welcomeHome" id="welcomeHome">
+                    <div>
+                        <div>
+                            <p class="bi bi-balloon-heart"></p>
+                        </div><br>
+                        <div>
+                            <p class="bi bi-balloon-heart"></p>
+                        </div><br>
+                        <div>
+                            <p class="bi bi-balloon-heart"></p>
+                        </div><br>
+                    </div>
+                    <div style="text-align: center;">
+                        <h1 style="font-family: sacramento; font-size: 35px;" data-aos="zoom-out">Undangan pernikahan</h1><br><br>
+                        <img src="bg.png" alt="Gambar undangan" class="img-welcome rounded rounded-circle" data-aos="fade-up"><br><br>
+                        <h1 style="font-family: sacramento; font-size: 30px;" id="panggilan2manten" data-aos="fade-up">Ilham & Aulia</h1>
+                        <p data-aos="fade-up">Kepada yth Bapak/Ibu/Saudara/i</p>
+                        <h5 style="font-family: Josefin Sans;" id="namateman" data-aos="fade-up">Untuk teman teman</h5><br><br>
+                        <button type="button" data-bs-dismiss="modal"
+                            class="btn btn-outline-dark rounded rounded-pill shadow"
+                            style="font-family: Josefin Sans; font-size: 15px;" onclick="openinvit()" data-aos="zoom-out">
+                            <i class="bi bi-envelope-open-heart"></i> Open invitation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="bagianundangan">
+        <audio src="/audio//Undangan digital Edo & Resta  Nothing Gonna Change My Love For You (Cover Shania Yan).mp3"
+            id="audioElement"></audio>
+        <section id="home" class="home">
+            <h1 style="font-family: sacramento;font-size: 35px;margin-top: 50px;">Undangan pernikahan</h1>
+            <img src="bg.png" style="margin-top: 80px;" alt="Gambar undangan"
+                class="img-welcome rounded rounded-circle"><br><br>
+            <h1 style="font-family: sacramento;font-size: 30px;margin-top: 20px;" id="panggilan2manten2">Ilham & Aulia
+            </h1>
+            <p id="tanggalmenikah">Rabu, 25 Oktober 2024</p>
+            <div style="text-align: center;margin-top: 80px;">
+                
+                <button class="btn btn-outline-dark rounded rounded-pill shadow"
+                    style="font-size: 15px; font-family: Josefin Sans;" onclick="trigertosaveDate()">
+                    <i class="bi bi-floppy"></i> Save the Date
+                </button>
+            </div>
+        </section>
+        <section id="mempelai" class="mempelai">
+            <h2 style="font-family: 'Noto Naskh Arabic', serif;font-size: 30px;margin-top: 30px;" data-aos="fade-up">
+                بِسْمِ اللَّهِ
+                الرَّحْمَنِ
+                الرَّحِيْمِ</h2><br>
+            <h2 style="font-family: sacramento; font-size: 20px;" data-aos="zoom-out">Assalamualaikum <br>
+                Warahmatullahi
                 wabarakatuh</h2>
-            <br>
-            <p style="font-family: Josefin Sans;" data-aos="fade">Tanpa mengurangi rasa hormat, kami mengundang
+            <p style="font-family: Josefin Sans;" data-aos="zoom-out">Tanpa mengurangi rasa hormat, kami mengundang
                 Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami :</p>
-            <div class="card rounded rounded-circle shadow"
-                style="padding: 10px; border: none; width: 210px; height: 210px;" data-aos="fade-left">
-                <img src="" alt="pengantin pria" id="fotopria" class="rounded rounded-circle img-welcome">
-            </div><br>
-            <h1 style="font-family: sacramento;" data-aos="fade-left" id="namalengkappria">Wahyu Agung</h1>
-            <p data-aos="fade-left">Putra</p>
-            <p style="font-family: Josefin Sans;" data-aos="fade-left" id="orangtua">Bapak Setia budi & Ibu Ai Khadijah</p>
-
-            <h1 class="sacramento-regular" style="font-size: 50px;" data-aos="fade-up">&</h1>
-
-            <div class="card rounded rounded-circle shadow"
-                style="padding: 10px; border: none; width: 210px; height: 210px;" data-aos="fade-right">
-                <img src="gambar-home.jpg" alt="pengantin wanita" id="fotowanita" class="rounded rounded-circle img-welcome">
-            </div>
-            <h1 style="font-family: sacramento;" data-aos="fade-right" id="namalengkapwanita">Rini Ningsih</h1>
-            <p data-aos="fade-right">Putri</p>
-            <p style="font-family: Josefin Sans;" data-aos="fade-right" id="orangtuawanita">Bapak Setia budi & Ibu Ai Khadijah</p>
-
-            <div id="dataNikah">
-                <i class="bi bi-balloon-heart" data-aos="fade-right"></i>
-                <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-up">Allah Subhanahu Wa Ta'ala
-                    Berfirman</h2>
-                <p style="font-family: Josefin Sans;" data-aos="fade-up">Dan di antara tanda-tanda (kebesaran)-Nya ialah
-                    Dia
-                    menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram
-                    kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu
-                    benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.</p>
-                <p style="font-family: Josefin Sans; font-weight: bold;" data-aos="fade-up">(QS. Ar-Rum Ayat 21)</p>
-
-                <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-up">Waktu Menuju Acara</h2>
-                <div class="card rounded rounded-pill shadow border border-1" style="padding: 10px;"
-                    data-aos="zoom-out">
-                    <p style="font-family: Josefin Sans;" id="countdown">260 Hari, 5 Jam, 23 Menit, 05 Detik</p>
+            <center>
+                <div class="card rounded rounded-circle shadow"
+                    style="padding: 10px; border: none; width: 210px; height: 210px;" data-aos="fade-left">
+                    <img src="gambar-home.jpg" alt="pengantin pria" id="fotopria"
+                        class="rounded rounded-circle img-welcome">
+                </div><br>
+            </center>
+            <h1 style="font-family: sacramento;" id="namalengkappria" data-aos="fade-up">Wahyu Agung</h1>
+            <p>Putra</p>
+            <p style="font-family: Josefin Sans;" id="orangtua" data-aos="fade-up">Bapak Setia budi & Ibu Ai Khadijah
+            </p>
+            <h1 style="font-family: sacramento; font-size: 50px;" data-aos="zoom-out">&</h1>
+            <center>
+                <div class="card rounded rounded-circle shadow"
+                    style="padding: 10px; border: none; width: 210px; height: 210px;" data-aos="fade-right">
+                    <img src="gambar-home.jpg" alt="pengantin wanita" id="fotowanita"
+                        class="rounded rounded-circle img-welcome">
                 </div>
-                <br><br>
-                <p style="font-family: Josefin Sans;" data-aos="fade-up">Dengan memohon rahmat dan ridho Allah Subhanahu
-                    Wa
-                    Ta'ala, insyaAllah kami akan menyelenggarakan acara:</p>
-                <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-left">Akad</h2>
-                <p style="font-family: Josefin Sans;" data-aos="fade-left" id="akad">Pukul 10.00 WIB - Selesai</p>
-                <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-right">Resepsi</h2>
-                <p style="font-family: Josefin Sans;" data-aos="fade-right" id="resepsi">Pukul 12.00 WIB - Selesai</p>
-                <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-right">Alamat</h2>
-                <p style="font-family: Josefin Sans;" data-aos="fade-right" id="lokasi">Pukul 12.00 WIB - Selesai</p>
-                <button class="btn border-black rounded rounded-pill shadow" data-aos="fade-up" onclick="lihatalamat()"><i class="bi bi-pin-map-fill"></i></i> Lihat alamat di google maps</button>
+            </center><br>
+            <h1 style="font-family: sacramento;" id="namalengkapwanita" data-aos="fade-up">Rini Ningsih</h1>
+            <p>Putri</p>
+            <p style="font-family: Josefin Sans;" id="orangtuawanita" data-aos="fade-up">Bapak Setia budi & Ibu Ai
+                Khadijah</p>
+        </section>
 
-            </div>
-        </center>
-        <div id="gallery" style="display: block; text-align: center;" class="py-5">
-            <i class="bi bi-balloon-heart" style="font-size: 20px;position: relative;top: 40px;right: 10px;"
-                data-aos="fade-right"></i>
-            <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-up">Gallery</h2>
+        <section id="dataNikah" class="dataNikah">
+            <i class="bi bi-balloon-heart"></i>
+            <h2 style="font-size: 20px; font-family: sacramento;" data-aos="fade-up">Allah Subhanahu Wa Ta'ala
+                Berfirman</h2>
+            <p style="font-family: Josefin Sans;font-size: 10px;" data-aos="fade-up">Dan di antara tanda-tanda
+                (kebesaran)-Nya ialah
+                Dia
+                menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram
+                kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu
+                benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.</p>
+            <p style="font-family: Josefin Sans; font-weight: bold;" data-aos="flip-left">(QS. Ar-Rum Ayat 21)</p>
 
-            <!-- Carousel pertama -->
-            <div id="carouselExampleIndicators1" class="carousel slide" style="padding: 20px;" data-aos="fade-left">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+            <h2 style="font-size: 25px; font-family: sacramento;" data-aos="fade-up">Waktu Menuju Acara</h2>
+            <center><button class="btn border-4 shadow rounded rounded-pill d-flex"
+                    style="font-family: Josefin Sans;outline: none;font-size: 12px;" id="countdown"
+                    data-aos="fade-up">22
+                    hari 5Jam
+                    22 Menit 00 detik</button></center>
+            <br><br>
+            <p style="font-family: Josefin Sans;" data-aos="zoom-out">Dengan memohon rahmat dan ridho Allah Subhanahu
+                Wa
+                Ta'ala, insyaAllah kami akan menyelenggarakan acara:</p><br>
+            <div style="display: flex;justify-content: space-between;">
+                <div data-aos="fade-right">
+                    <h2 style="font-size: 28px; font-family: sacramento;">Akad</h2>
+                    <p style="font-family: Josefin Sans;" id="akad">Sabtu, 15 Januari 2024</p>
                 </div>
+                <div data-aos="fade-left">
+                    <h2 style="font-size: 28px; font-family: sacramento;">Resepsi</h2>
+                    <p style="font-family: Josefin Sans;" id="resepsi">Sabtu, 15 Januari 2024</p>
+                </div>
+            </div>
+            <h2 style="font-size: 28px; font-family: sacramento;" data-aos="fade-up">Alamat</h2>
+            <p style="font-family: Josefin Sans;" id="lokasi" data-aos="fade-up">kp.jabon gardu</p>
+            <center><button class="btn border-black rounded rounded-pill shadow"
+                    style="font-size: 12px;font-family: Josefin Sans;" onclick="lihatalamat()" data-aos="zoom-out"><i
+                        class="bi bi-pin-map-fill"></i></i> Lihat alamat di google maps</button></center>
+        </section>
+
+        <section id="gallery" class="gallery">
+            <h2 style="font-size: 30px; font-family: sacramento;" data-aos="fade-up">Gallery</h2>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-aos="fade-right">
                 <div class="carousel-inner" id="carousel1">
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
-
-
-            <!-- Carousel kedua -->
-            <div id="carouselExampleIndicators2" class="carousel slide" style="padding: 20px;" data-aos="fade-right">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-aos="fade-left">
                 <div class="carousel-inner" id="carousel2">
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
-        </div>
-        <div id="rsvp" style="padding: 10px;">
-            <div class="card border-4 rounded-4 shadow" style="padding: 10px;" data-aos="fade-up">
-                <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-up">Berikan Gift</h2>
-                <div id="datarekening"></div>
-            </div><br>
-
-            <div class="card border-4 rounded-4 shadow" style="padding: 10px;" data-aos="fade-up">
-                <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-up">Berikan Ucapan Selamat</h2>
-                <form id="rsvpForm">
+        </section>
+        <section id="rsvp" class="rsvp">
+            <div id="datarekening"></div>
+            <form id="rsvpForm" data-aos="flip-left">
+                <div class="card rounded-4 border-2 shadow"
+                    style="padding: 10px; font-family: Josefin Sans;font-size: 13px;">
+                    <p>Berikan Ucapan Selamat</p>
                     <label for="nama">Nama :</label>
-                    <input type="text" name="nama" id="nama" placeholder="Masukan nama kamu" class="form-control">
-                    <label for="kehadiran">Konfirmasi kehadiran:</label>
-                    <select name="kehadiran" id="kehadiran" class="form-control">
-                        <option value="">pilih satu</option>
-                        <option value="Ya">Ya aku akan hadir</option>
-                        <option value="tidak">Sepertinya aku tidak bisa hadir</option>
-                    </select>
+                    <input type="text" name="nama" id="nama" placeholder="Masukan nama kamu" class="inprsvp"><br>
                     <label for="Ucapan">Ucapan :</label>
-                    <textarea name="ucapan" id="ucapan" cols="30" rows="10" class="form-control"
-                        placeholder="Masukan ucapan selamat kamu"></textarea>
-                    <input type="submit" value="Kirim" class="btn btn-primary">
-                </form>
-            </div><br>
-
-            <div class="card border-4 rounded-4 shadow" style="padding: 10px;" data-aos="fade-up">
-                <h2 class="sacramento-regular" style="font-size: 25px;" data-aos="fade-up">Ucapan dari teman</h2>
-                <ul id="dataList">
-
-                </ul>
-            </div>
-        </div>
+                    <textarea name="ucapan" id="ucapan" placeholder="Masukan ucapan selamat kamu"></textarea><br>
+                    <label for="kehadiran">Konfirmasi kehadiran:</label>
+                    <input type="text" class="hidden" id="kehadiran">
+                    <div style="display: flex;justify-content: space-evenly;">
+                        <button type="button" class="btn btn-outline-primary rounded rounded-pill"
+                            onclick="setkehadiran('ya, saya akan hadir')" style="font-size: 10px;">Ya, saya
+                            akan
+                            hadir</button>
+                        <button type="button" class="btn btn-outline-danger rounded rounded-pill"
+                            onclick="setkehadiran('Maaf, Saya tidak bisa hadir')" style="font-size: 10px;">Maaf, saya
+                            tidak
+                            bisa hadir</button>
+            </form>
+    </div><br><br>
+    <button type="submit" class="btn btn-outline-success rounded-4"
+        style="width: 30%;position: absolute;right: 10px;bottom: 10px;font-size: 13px;">Kirim <i
+            class="bi bi-send"></i></button>
+    </div><br>
+    <ul id="dataList"></ul>
+    </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -338,11 +300,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js">
 
-    <script src="script.js"></script>
-
+    </script>
     <script>
         AOS.init();
     </script>
